@@ -23,6 +23,7 @@ func twoSum(nums []int, target int) []int {
 		for j := i + 1; j < len(nums); j++ {
 			if nums[i]+nums[j] == target {
 				array = append(array, i, j)
+				return array
 			}
 		}
 	}
@@ -47,3 +48,8 @@ func main() {
 	array := twoSum2(nums, 9)
 	fmt.Printf("%v", array)
 }
+
+/*
+小结： 自己开始做的时候首先有的想法就是通过循环嵌套的方式，当实现之后看了其他人的答案，第一个感觉是人家的方法比我的简单了很多，也扩展了一下自己的思维
+不能总是局限于之前的思维方式
+*/
