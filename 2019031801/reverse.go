@@ -75,6 +75,34 @@ func reverse2(x int) int {
 	return res
 }
 
+// 其他人大答案的耗时和内存占用都比上面两周小
+func reverse3(x int) int {
+	var r int
+	var limit int
+	if x >= 0 {
+		limit = math.MaxInt32 / 10
+		for x != 0 {
+			remainder := x % 10
+			if r > limit || (r == limit && remainder > 7) {
+				return 0
+			}
+			r = r*10 + remainder
+			x /= 10
+		}
+	} else {
+		limit = math.MinInt32 / 10
+		for x != 0 {
+			remainder := x % 10
+			if r < limit || (r == limit && remainder < -8) {
+				return 0
+			}
+			r = r*10 + remainder
+			x /= 10
+		}
+	}
+	return r
+}
+
 func main() {
 	num := 1534236469
 	res := reverse2(num)
