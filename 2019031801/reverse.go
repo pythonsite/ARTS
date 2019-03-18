@@ -75,14 +75,15 @@ func reverse2(x int) int {
 	return res
 }
 
-// 其他人大答案的耗时和内存占用都比上面两周小
+// 其他人大答案的耗时和内存占用都比上面两种方法小
 func reverse3(x int) int {
 	var r int
 	var limit int
 	if x >= 0 {
-		limit = math.MaxInt32 / 10
+		limit = math.MaxInt32 / 10 // 2的32次方前9位数字
 		for x != 0 {
-			remainder := x % 10
+			remainder := x % 10 //这里每次获取x的各位数字
+			// Int32 占4个字节（-2147483648~2147483647），所以翻转后的最后一位不能大于7
 			if r > limit || (r == limit && remainder > 7) {
 				return 0
 			}
@@ -93,6 +94,7 @@ func reverse3(x int) int {
 		limit = math.MinInt32 / 10
 		for x != 0 {
 			remainder := x % 10
+			// Int32 占4个字节（-2147483648~2147483647）,所以翻转后最后一位不能小于-8
 			if r < limit || (r == limit && remainder < -8) {
 				return 0
 			}
